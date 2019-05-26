@@ -1,16 +1,16 @@
 
 from django.http import HttpResponse
 from .models import *
+from django.template import loader
 
 # Create your views here.
 def index(request):
-    que = questions.objects.all()
-
-    print(que)
+    que = questionnaire.objects.all()
     formatted_albums = ["<li>{}</li>".format(alb) for alb in que]
-    message = """<ul>{}</ul>""".format("\n".join(formatted_albums))
-    #message = ("page d'accueil de notre premier site")
-    return HttpResponse(message)
+    #message = """<ul>{}</ul>""".format("\n".join(formatted_albums))
+    template = loader.get_template('index.html')
+    context = {'que':que}
+    return HttpResponse(template.render(context,request=request))
 
 
 def listing(request):
