@@ -15,19 +15,18 @@ def index(request):
 
 
 def detail(request, prof_id):
-    print ('mois _ eee')
-    ques = questionnaire.objects.filter(profs=prof_id)
 
+    ques = questionnaire.objects.filter(profs=prof_id)
     template = loader.get_template('questi/questionnaire.html')
     context = {'ques':ques}
     return render(request, 'questi/questionnaire.html', context)
 
-def detail_questionnaire(request, prof_id):
+def detail_questionnaire(request, questionnaire_id):
     print ('mo')
-    ques = questionnaire.objects.get(profs=prof_id)
-    template = loader.get_template('questi/questionnaires.html')
+    ques = questions.objects.get(questionnaires=questionnaire_id)
+    template = loader.get_template('questi/questionnaire.html')
     context = {'ques':ques}
-    return render(request, 'questi/questionnaires.html', context)
+    return render(request, 'questi/questionnaire.html', context)
 
 def detail_questions(request, questionnaire_id):
     print ('moissss')

@@ -6,13 +6,13 @@ from questi.models import *
 
 
 
-name_proff = "nass_12"
+name_proff = "wafflard"
 passe = "123456789"
 email_ = "mago-emi12@mail.ru"
 
 ref = random.randrange(0,100000)
 refe = ref
-nom_courr = "science--chimie--histoire"
+nom_courr = "les histoire de wafflard"
 nom_pr = name_proff
 
 expl = "historique sur la science et la chimie"

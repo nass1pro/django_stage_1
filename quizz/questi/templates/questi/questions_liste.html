@@ -2,7 +2,7 @@
 
 <div class="<col-sm-4 text-center>">
     {% for questions in quess %}
-    <a href="{% url 'detail_questions' questions_id=questions.id %}">
+    <a href="{% url 'detail_questions' questions_id=questions.nom_cour %}">
       <h4>{{ questions.quest }}</h4>
       <h5>{{ questions.rep_1 }}</h5>
       </a>
