@@ -103,3 +103,18 @@ def search(request):
             """.format("</li><li>".join(albums))
 
     return HttpResponse(message)
+
+
+
+
+
+    #url(r'^$',views.listing, name="listing"),
+    """
+    def listing(request):
+        print ("oeoeoeoeoeo")
+        ques = prof.objects.all()
+        #formatted_albums = ["<li>{}</li>".format(pr_name) for pr_name in ques]
+        template = loader.get_template('liste.html')
+        context = {'ques':ques}
+        return HttpResponse(template.render(context,request=request))
+    """
