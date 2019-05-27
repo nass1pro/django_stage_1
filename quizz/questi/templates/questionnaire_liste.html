@@ -1,0 +1,11 @@
+
+
+<div class="<col-sm-4 text-center>">
+    {% for questionnaire in ques %}
+    <a href="{% url 'detail_questionnaire' questionnaire_id=questionnaire.id %}">
+      <h4>{{ questionnaire.nom_du_cours }}</h4>
+      </a>
+      <h3> 'les questionnaire du proff'</h3>
+    {% endfor %}
+
+  </div>

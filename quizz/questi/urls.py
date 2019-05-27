@@ -1,10 +1,15 @@
 
 from django.conf.urls import url
+from django.urls import path
 
 from . import views
 
 urlpatterns = [
-    url(r'^$',views.listing),
-    url(r'^(?P<album_id>[0-9]+)/$', views.detail),
-    url(r'^search/$', views.search),
+    url(r'^$',views.listing, name="listing"),
+    path('<int:prof_id>/', views.detail, name='detail'),
+    path('<int:questionnaire_id>/', views.detail_questionnaire, name='detail_questionnaire'),
+    path('<int:questions_id>/', views.detail_questions, name='detail_questions'),
+
 ]
+#url(r'^(?P<prof_id>)/$', views.detail,name="detail"),
+#url(r'^search/$', views.search, name="search"),

@@ -1,8 +1,9 @@
-<ul>
-  {% for alb in que %}
-  <div class="<col-sm-4 text-center>"
-    <a href="/">
+
+
+<div class="<col-sm-4 text-center>"
+    {% for pr_name in que %}
+    <a href="{% url 'detail' prof_id=pr_name.id %}">
+      <h4>{{ pr_name.name }}</h4>
       </a>
-      <li>{{ alb.nom_du_cours }}</li>
     {% endfor %}
-</ul>
+  </div>
