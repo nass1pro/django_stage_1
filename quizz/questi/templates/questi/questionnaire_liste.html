@@ -2,7 +2,7 @@
 
 <div class="<col-sm-4 text-center>">
     {% for questionnaire in ques %}
-    <a href="{% url 'detail_questions' questions_id=questionnaire.id %}">
+    <a href="{% url 'detail_questions' questionnaire_id=questionnaire.id %}">
       <h4>{{ questionnaire.nom_du_cours }}</h4>
       <h3> {{questionnaire.nom_prof}}</h3>
       </a>
