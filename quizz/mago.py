@@ -6,32 +6,32 @@ from questi.models import *
 
 
 
-name_proff = "wafflard"
+name_proff = "thomas"
 passe = "123456789"
 email_ = "mago-emi12@mail.ru"
 
 ref = random.randrange(0,100000)
 refe = ref
-nom_courr = "les histoire de wafflard"
+nom_courr = "les histoire de thomas"
 nom_pr = name_proff
 
 expl = "historique sur la science et la chimie"
 
 
 ques1 = ("Comment s'appelle la table de laboratoire sur laquelle le chimiste fait ses expériences ?",)
-rep1 = ("Le comptoir","L'établi","La paillasse","La paillasse",)
+rep1 = ("Le comptoir","L'établi","La paillasse",3)
 
-ques2 = ("Quel grand physicien, prix Nobel, découvrit la radioactivité ?",)
-rep2 = ("Henri Becquerel","John Dalton","Frédéric Joliot-Curie","Henri Becquerel",)
+ques2 = ("Quel grand physicien, prix Nobel, découvrit la radioactivité ?")
+rep2 = ("Henri Becquerel","John Dalton","Frédéric Joliot-Curie",1)
 
 ques3 = ("Quel est le troisième état de la matière les deux premiers étant : solide, liquide?",)
-rep3 = ("Air","Émulsion","Gaz","Gaz")
+rep3 = ("Air","Émulsion","Gaz",3)
 
 ques4 = ("À quelle température, l'eau se change-t-elle en gaz ?",)
-rep4 = ("90°C","100°C","1000°C","100°C")
+rep4 = ("90°C","100°C","1000°C",2)
 
 ques5 = ("Quels sont les principaux éléments nécessaires à la vie ?",)
-rep5 = ("Arsenic, azote hydrogène, oxygène.","Carbone, azote, hydrogène, oxygène, phosphore, soufre.","Hydrogène, oxygène, phosphore, potassium, soufre.","Hydrogène, oxygène, phosphore, potassium, soufre.",)
+rep5 = ("Arsenic, azote hydrogène, oxygène.","Carbone, azote, hydrogène, oxygène, phosphore, soufre.","Hydrogène, oxygène, phosphore, potassium, soufre.",3)
 
 ques6 = ("Qui découvrit la pénicilline ?",)
 rep6 = ("Pierre et Marie Curie","Ernest Duchêne","Sir Alexandre Flemming","Sir Alexandre Flemming",)

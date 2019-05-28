@@ -27,13 +27,13 @@ while i < len(data):
     vrai = data_q[j][-1]
 
     if len(data_q[j]) == 3:
-        quest_ref.questions_set.create(reference = refe,nom_du_cours = nom_courr,quest = data[i][0],rep_1 = data_q[j][0],rep_2 = data_q[j][1], rep_tru = vrai)
+        quest_ref.questions_set.create(reference = refe,nom_du_cours = nom_courr,quest = data[i][0],rep_1 = data_q[j][0],rep_2 = data_q[j][1], rep_tru_id= vrai)
 
     elif len(data_q[j]) > 3:
-        quest_ref.questions_set.create(reference = refe,nom_du_cours = nom_courr,quest = data[i][0],rep_1 = data_q[j][0],rep_2 = data_q[j][1],rep_3 = data_q[j][2], rep_tru = vrai)
+        quest_ref.questions_set.create(reference = refe,nom_du_cours = nom_courr,quest = data[i][0],rep_1 = data_q[j][0],rep_2 = data_q[j][1],rep_3 = data_q[j][2], rep_tru_id = vrai)
 
     elif len(data_q[j]) > 4:
-        quest_ref.questions_set.create(reference = refe,nom_du_cours = nom_courr,quest = data[i][0],rep_1 = data_q[j][0],rep_2 = data_q[j][1],rep_3 = data_q[j][2],rep_4 = data_q[j][3],rep_tru = vrai)
+        quest_ref.questions_set.create(reference = refe,nom_du_cours = nom_courr,quest = data[i][0],rep_1 = data_q[j][0],rep_2 = data_q[j][1],rep_3 = data_q[j][2],rep_4 = data_q[j][3],rep_tru_id = vrai)
 
 
     i += 1
