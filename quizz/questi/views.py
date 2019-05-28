@@ -41,9 +41,9 @@ def submit(request):
     k = request.POST.get('q_25')
     j = v.rep_tru_id
     print(k)
-    if (k == j):
+    if (int(k) == int(j)):
         print('quel')
         return HttpResponse(request.POST['q_25'])
-    #else:
-        #message = 'non'
-        #return HttpResponse(message)
+    else:
+        message = 'non'
+        return HttpResponse(message)
