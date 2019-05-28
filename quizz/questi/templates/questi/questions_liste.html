@@ -1,15 +1,40 @@
 
+<form action="{% url 'submit' %}" method="post">
+  {% csrf_token %}
+  <div class="<col-sm-4 text-center>">
 
-<div class="<col-sm-4 text-center>">
-    {% for questions in quess %}
-    <a href="{% url 'detail_questions' questionnaire_id=questions.id %}">
-      <h3>{{ questions.quest }}</h3>
-      <h6>{{ questions.rep_1 }}</h6>
-      <h6>{{ questions.rep_2 }}</h6>
-      <h6>{{ questions.rep_3 }}</h6>
-      <h6>{{ questions.rep_4 }}</h6>
-      </a>
+      {% for questions in quess %}
+        <h3>{{ questions.nom_du_cours  }}</h3>
 
-    {% endfor %}
+        <h3></h3>
+        <h4>{{ questions.quest }}</h4>
 
-</div>
+        <div>
+          <input type="radio" id="{{questions.id}}-1" name="q_{{questions.id}}" value="r_{{questions.id}}_1"
+                 checked>
+          <label for="{{questions.id}}-1"><h6>{{ questions.rep_1 }}</h6></label>
+        </div>
+
+        <div>
+          <input type="radio" id="{{questions.id}}-2" name="q_{{questions.id}}" value={{questions.rep_2}}
+                 checked>
+          <label for="{{questions.id}}-2"><h6>{{ questions.rep_2 }}</h6></label>
+        </div>
+        <div>
+
+          <input type="radio" id="{{questions.id}}-3" name="q_{{questions.id}}"value={{questions.rep_3}}
+                 checked>
+          <label for="{{questions.id}}-3"><h6>{{ questions.rep_3 }}</h6></label>
+        </div>
+
+        <div>
+          <input type="radio" id="{{questions.id}}-4" name="q_{{questions.id}}" value={{questions.rep_4}}
+                 checked>
+          <label for="{{questions.id}}-4"><h6>{{ questions.rep_4 }}</h6></label>
+        </div>
+
+      {% endfor %}
+      <input type="submit" value="Vote">
+
+  </div>
+</form>

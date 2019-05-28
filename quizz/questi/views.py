@@ -22,7 +22,7 @@ def detail(request, prof_id):
     return render(request, 'questi/questionnaire.html', context)
 
 def detail_questionnaire(request, questionnaire_id):
-    print ('mo')
+
     ques = questions.objects.get(pk=questionnaire_id)
     template = loader.get_template('questi/questionnaire.html')
     context = {'ques':ques}
@@ -34,3 +34,7 @@ def detail_questions(request, questionnaire_id):
     template = loader.get_template('questi/questions.html')
     context = {'quess':quess}
     return render(request, 'questi/questions.html', context)
+
+def submit(request):
+    #quess = questions.objects.filter(questionnaires=questionnaire_id)
+    return HttpResponse(request.POST['q_20'])

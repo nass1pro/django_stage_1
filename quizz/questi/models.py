@@ -37,6 +37,7 @@ class questions(models.Model):
     rep_2          = models.CharField(max_length=40000)
     rep_3          = models.CharField(max_length=40000)
     rep_4          = models.CharField(max_length=40000)
+    rep_tru_id     = models.IntegerField(null=True)
     questionnaires = models.ForeignKey(questionnaire, on_delete=models.CASCADE)
 
     def __str__(self):
