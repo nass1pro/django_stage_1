@@ -37,29 +37,36 @@ def detail_questions(request, questionnaire_id):
 
 
 def submit(request, questions_id):
-    print('mois')
+
     reponsse_juste = 0
     cours_nom = questions.objects.get(pk = questions_id)
-    print(cours_nom)
 
-    v = questions.objects.get(pk = questions_id)
-    j = v.nom_du_cours
-    pr = questionnaire.objects.get(nom_du_cours = j)
+    sub = questions.objects.get(pk = questions_id)
+    n_cours = sub.nom_du_cours
+
+    d = sub.reference
+    pr = questionnaire.objects.get(nom_du_cours = n_cours, reference = d)
     count = pr.questions_set.count()
-    i = 0
-    while (i < count):
+    i = 1
+    while (i <= count):
 
         questions_id = str(questions_id)
+
         k = request.POST.get(questions_id)
-        print(k)
-        j = v.rep_tru_id
+        sub = questions.objects.get(pk = questions_id)
+        j = sub.rep_tru_id
+
+        if (k == 'None'):
+                k = 0
         if (int(k) == j):
             reponsse_juste += 1
         i += 1
+
         questions_id = int(questions_id)
-        questions_id -= 1
+        questions_id += 1
 
+    print(reponsse_juste, questions_id )
     template = loader.get_template('questi/submit.html')
-    contexte = {'reponsse_juste':reponsse_juste}
 
-    return render(request, 'questi/submit.html', contexte)
+
+    return render(request, 'questi/submit.html')

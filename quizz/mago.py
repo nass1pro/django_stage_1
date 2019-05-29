@@ -6,13 +6,13 @@ from questi.models import *
 
 
 
-name_proff = "thomas"
+name_proff = "nassime"
 passe = "123456789"
 email_ = "mago-emi12@mail.ru"
 
 ref = random.randrange(0,100000)
 refe = ref
-nom_courr = "les histoire de thomas"
+nom_courr = "science et chimie"
 nom_pr = name_proff
 
 expl = "historique sur la science et la chimie"
@@ -21,7 +21,7 @@ expl = "historique sur la science et la chimie"
 ques1 = ("Comment s'appelle la table de laboratoire sur laquelle le chimiste fait ses expériences ?",)
 rep1 = ("Le comptoir","L'établi","La paillasse",3)
 
-ques2 = ("Quel grand physicien, prix Nobel, découvrit la radioactivité ?")
+ques2 = ("Quel grand physicien, prix Nobel, découvrit la radioactivité ?",)
 rep2 = ("Henri Becquerel","John Dalton","Frédéric Joliot-Curie",1)
 
 ques3 = ("Quel est le troisième état de la matière les deux premiers étant : solide, liquide?",)

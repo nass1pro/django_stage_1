@@ -1,12 +1,10 @@
 
 
   <div class="<col-sm-4 text-center>">
+    <h3>{{ questions.nom_du_cours }}</h3>
     {% for questions in quess %}
     <form action="{% url 'submit' questions.id %}" method="post">
       {% csrf_token %}
-
-
-        <h3>{{ questions.nom_du_cours  }}</h3>
 
         <h3></h3>
         <h4>{{ questions.quest }}</h4>
