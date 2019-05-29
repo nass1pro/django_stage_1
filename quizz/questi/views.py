@@ -34,17 +34,20 @@ def detail_questions(request, questionnaire_id):
     context = {'quess':quess}
     return render(request, 'questi/questions.html', context)
 
-def submit(request):
-    v = questions.objects.get(pk = 25)
-    
-    va = '25'
+def submit(request, questions_id):
+    print('mois')
 
-    k = request.POST.get(va)
+
+    v = questions.objects.get(pk = questions_id)
+    questions_id = str(questions_id)
+    k = request.POST.get(questions_id)
     j = v.rep_tru_id
-    print(k)
+    print(questions_id)
+    template = loader.get_template('questi/submit.html')
+
     if (int(k) == j):
         print('quel')
-        return HttpResponse(request.POST['25'])
+        return render(request, 'questi/submit.html')
     else:
-        message = 'non'
+        message = 'erreur'
         return HttpResponse(message)
