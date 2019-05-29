@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import *
 from django.template import loader
 from django.shortcuts import render
+from django.template.loader import render_to_string
 
 # Create your views here.
 
@@ -34,20 +35,31 @@ def detail_questions(request, questionnaire_id):
     context = {'quess':quess}
     return render(request, 'questi/questions.html', context)
 
+
 def submit(request, questions_id):
     print('mois')
-
+    reponsse_juste = 0
+    cours_nom = questions.objects.get(pk = questions_id)
+    print(cours_nom)
 
     v = questions.objects.get(pk = questions_id)
-    questions_id = str(questions_id)
-    k = request.POST.get(questions_id)
-    j = v.rep_tru_id
-    print(questions_id)
-    template = loader.get_template('questi/submit.html')
+    j = v.nom_du_cours
+    pr = questionnaire.objects.get(nom_du_cours = j)
+    count = pr.questions_set.count()
+    i = 0
+    while (i < count):
 
-    if (int(k) == j):
-        print('quel')
-        return render(request, 'questi/submit.html')
-    else:
-        message = 'erreur'
-        return HttpResponse(message)
+        questions_id = str(questions_id)
+        k = request.POST.get(questions_id)
+        print(k)
+        j = v.rep_tru_id
+        if (int(k) == j):
+            reponsse_juste += 1
+        i += 1
+        questions_id = int(questions_id)
+        questions_id -= 1
+
+    template = loader.get_template('questi/submit.html')
+    contexte = {'reponsse_juste':reponsse_juste}
+
+    return render(request, 'questi/submit.html', contexte)
