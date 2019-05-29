@@ -36,14 +36,15 @@ def detail_questions(request, questionnaire_id):
 
 def submit(request):
     v = questions.objects.get(pk = 25)
-    print(v.rep_tru_id)
-    print(request.POST.get('q_25'))
-    k = request.POST.get('q_25')
+    
+    va = '25'
+
+    k = request.POST.get(va)
     j = v.rep_tru_id
     print(k)
-    if (int(k) == int(j)):
+    if (int(k) == j):
         print('quel')
-        return HttpResponse(request.POST['q_25'])
+        return HttpResponse(request.POST['25'])
     else:
         message = 'non'
         return HttpResponse(message)
