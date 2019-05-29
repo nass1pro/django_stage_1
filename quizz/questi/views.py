@@ -60,6 +60,7 @@ def submit(request, questions_id):
                 k = 0
         if (int(k) == j):
             reponsse_juste += 1
+
         i += 1
 
         questions_id = int(questions_id)
@@ -68,5 +69,6 @@ def submit(request, questions_id):
     print(reponsse_juste, questions_id )
     template = loader.get_template('questi/submit.html')
 
+    context = {'reponse_juste': reponsse_juste}
 
-    return render(request, 'questi/submit.html')
+    return render(request, 'questi/submit.html', context)
