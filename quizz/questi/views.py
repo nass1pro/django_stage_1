@@ -56,8 +56,12 @@ def submit(request, questions_id):
         sub = questions.objects.get(pk = questions_id)
         j = sub.rep_tru_id
 
+        print(k)
+
         if (k == 'None'):
                 k = 0
+        if (k == None):
+            k = 0
         if (int(k) == j):
             reponsse_juste += 1
 
