@@ -1,15 +1,10 @@
 from mago import *
 from questi.models import *
+from django.contrib.auth.models import User
 
 
-"""field_values = []
-for field in self._meta.get_fields():
-    field_values.append(str(getattr(self, field.name, '')))
-return ' '.join(field_values)
-"""
 
-
-profff = prof.objects.create(name = name_proff,password = passe, email = email_)
+profff = prof.objects.create_user(name = name_proff,password = passe, email = email_)
 
 pro = prof.objects.get(name = name_proff)
 

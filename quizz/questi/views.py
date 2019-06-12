@@ -46,6 +46,9 @@ def detail_questions(request, questionnaire_id):
     return render(request, 'questi/questions.html', context)
 
 
+def formulair(request):
+    pass
+
 def submit(request, questions_id):
 
     reponsse_juste = 0
