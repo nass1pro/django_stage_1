@@ -1,0 +1,12 @@
+<div class="<col-sm-4 text-center>">
+
+  <h3>liste des des profs</h3>
+
+      {% for pr_name in que %}
+
+        <a href="{% url 'detail' prof_id=pr_name.id %}">
+
+          <h4>{{ pr_name.name }}</h4>
+        </a>
+        {% endfor %}
+  </div>

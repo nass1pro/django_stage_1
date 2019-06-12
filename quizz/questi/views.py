@@ -13,6 +13,16 @@ def index(request):
     context = {'que':que}
     return render(request, 'questi/index.html', context)
 
+def acceuille(request):
+    que = prof.objects.all()
+    template = loader.get_template('questi/acceuille.html')
+    context = {'que':que}
+    return render(request, 'questi/acceuille.html', context)
+
+def connexion(request):
+
+    template = loader.get_template('questi/connexions.html')
+    return render(request, 'questi/connexions.html')
 
 def detail(request, prof_id):
 
@@ -56,8 +66,6 @@ def submit(request, questions_id):
         sub = questions.objects.get(pk = questions_id)
         j = sub.rep_tru_id
 
-        print(k)
-
         if (k == 'None'):
                 k = 0
         if (k == None):
@@ -70,9 +78,6 @@ def submit(request, questions_id):
         questions_id = int(questions_id)
         questions_id += 1
 
-    print(reponsse_juste, questions_id )
     template = loader.get_template('questi/submit.html')
-
     context = {'reponse_juste': reponsse_juste}
-
     return render(request, 'questi/submit.html', context)
