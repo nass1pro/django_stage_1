@@ -47,7 +47,8 @@ def detail_questions(request, questionnaire_id):
 
 
 def formulair(request):
-    pass
+    template = loader.get_template('questi/formulaire.html')
+    return render(request, 'questi/formulaire.html')
 
 def submit(request, questions_id):
 
