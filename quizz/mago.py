@@ -60,3 +60,17 @@ rep13 = ("Jean-Baptiste de Lamarck","Antoine-Laurent de Lavoisier","René-Antoin
 
 data = (ques1, ques2,ques3,ques4,ques5)
 data_q = (rep1,rep2,rep3,rep4,rep5)
+
+
+
+
+  <div class="<col-sm-4 text-center>">
+  nom utilisateur <br>
+  <input type="text" size="20" name="Nom d'utilisateur"><br>
+  password <br>
+  <input type="text" size="20" name="Mot de passe"><br>
+  <br>
+  <button name="button"> connexion </button>
+
+
+  </div>

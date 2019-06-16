@@ -4,25 +4,28 @@ from .models import *
 from django.template import loader
 from django.shortcuts import render
 from django.template.loader import render_to_string
+from .forms import ConnexionForm
 
 # Create your views here.
 
 def index(request):
     que = prof.objects.all()
-    template = loader.get_template('questi/index.html')
-    context = {'que':que}
-    return render(request, 'questi/index.html', context)
 
-def acceuille(request):
-    que = prof.objects.all()
-    template = loader.get_template('questi/acceuille.html')
-    context = {'que':que}
-    return render(request, 'questi/acceuille.html', context)
+    form = ConnexionForm()
+    template = loader.get_template('questi/index.html')
+    context = {'que':que, 'form':form}
+    print(que)
+    return render(request, 'questi/connexions.html', context)
 
 def connexion(request):
 
-    template = loader.get_template('questi/connexions.html')
-    return render(request, 'questi/connexions.html')
+    template = loader.get_template('questi/profil.html')
+    return render(request, 'questi/profil.html')
+
+def profil(request):
+
+    template = loader.get_template('questi/profil.html')
+    return render(request, 'questi/profil.html')
 
 def detail(request, prof_id):
 

@@ -1,6 +1,8 @@
 
-<div class="<col-sm-4 text-center>">
+<form action="{% url 'connexion' %}" method="post">
+  {% csrf_token %}
+   {{ form.as_p }}
 
-<h1></h1>
-
-</div>
+    <br>
+      <input type="submit" value="Se connecter" />
+</form>
