@@ -3,11 +3,14 @@ from questi.models import *
 from django.contrib.auth.models import User
 
 
-
+### donnée user groupe and utilisateur
+### rajouter class cours
 profff = prof.objects.create_user(name = name_proff,password = passe, email = email_)
 
 pro = prof.objects.get(name = name_proff)
 
+
+###ici !!!!!
 questionnair = pro.questionnaire_set.create(reference = refe,nom_du_cours = nom_courr, nom_prof = name_proff,explication = expl)
 
 quest_ref = questionnaire.objects.get(nom_prof = name_proff)

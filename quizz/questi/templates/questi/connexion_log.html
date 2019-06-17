@@ -1,8 +1,12 @@
 
-<form action="{% url 'connexion' %}" method="post">
+<form action="{% url 'profil' %}" method="post">
+  {% if error %}
+  <p><strong>Utilisateur inconnu ou mauvais mot de passe.</strong></p>
+  {% endif %}
+
   {% csrf_token %}
    {{ form.as_p }}
-
     <br>
       <input type="submit" value="Se connecter" />
+
 </form>

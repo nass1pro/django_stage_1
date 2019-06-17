@@ -1,15 +1,14 @@
 
 
-<div class="<col-sm-4 text-center>">
 
-  <h3></h3>
+<form action="{% url 'connexion'%}" method="post">
+  {% if error %}
+  <p><strong>Utilisateur inconnu ou mauvais mot de passe.</strong></p>
+  {% endif %}
 
-        <a href="{% url 'acceuille'%}">
-          <h5> nos quizz</h5>
-        </a>
-        
-        <a href="{% url 'formulaire'%}">
-          <h5> crée un quizz</h5>
-        </a>
+  {% csrf_token %}
+   {{ form.as_p }}
+    <br>
+      <input type="submit" value="Se connecter" />
 
-  </div>
+</form>

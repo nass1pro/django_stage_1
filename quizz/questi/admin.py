@@ -1,8 +1,10 @@
 from django.contrib import admin
-from .models import prof, questionnaire, questions, Profil
+from .models import *
 # Register your models here.
 
 admin.site.register(prof)
+admin.site.register(user_elev)
 admin.site.register(questionnaire)
 admin.site.register(questions)
-admin.site.register(Profil)
+admin.site.register(classe)
+admin.site.register(cours)

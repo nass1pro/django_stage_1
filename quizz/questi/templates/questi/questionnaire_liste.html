@@ -1,12 +1,8 @@
 
 
-<div class="<col-sm-4 text-center>">
-    {% for questionnaire in ques %}
-    <a href="{% url 'detail_questions' questionnaire_id=questionnaire.id %}">
-      <h4>{{ questionnaire.nom_du_cours }}</h4>
 
-      </a>
+{% for questionnaire in context %}
 
-    {% endfor %}
+<h4>{{ questionnaire.name_cour }}</h4>
 
-  </div>
+{% endfor %}
