@@ -9,7 +9,6 @@ profff = prof.objects.create_user(name = name_proff,password = passe, email = em
 
 pro = prof.objects.get(name = name_proff)
 
-
 ###ici !!!!!
 questionnair = pro.questionnaire_set.create(reference = refe,nom_du_cours = nom_courr, nom_prof = name_proff,explication = expl)
 
