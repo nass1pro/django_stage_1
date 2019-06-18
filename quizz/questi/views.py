@@ -23,10 +23,6 @@ def index(request):
 
 def connexion(request):
 
-    """
-    connexion des utilisateur
-    """
-
      error = False
 
      if request.method == "POST":
@@ -65,7 +61,7 @@ def connexion(request):
                     classe_eleves = us_eleve.name_classe
 
                     print(classe_eleves.name_classe)
-                    cont = {'username': username, 'groupe': classe_eleves.id}
+                    cont = {'username': username, 'groupe': classe_eleves.id, 'classe': classe_eleves.name_classe}
 
                     print(cont)
                     return render(request, 'questi/profil.html', cont)
@@ -76,20 +72,15 @@ def connexion(request):
 
 def profil(request):
 
-    """
-    chaque utilisateur se trouve sur une page dédier
-    a utiliser avec des autres config...
-    """
 
     template = loader.get_template('questi/profil.html')
     return render(request, 'questi/profil.html')
 
 def detail(request, groupe):
-"""
-revoir les ojectif
-"""
-    ques = classe.objects.get(pk=groupe)
+
+    ques = classe.objects.filter(pk=groupe)
     cour = cours.objects.filter(name_classe =  groupe)
+    print (groupe, ques)
 
     template = loader.get_template('questi/detail.html')
     cour = {'cour':cour}
@@ -106,9 +97,7 @@ def detail_questionnaire(request):
 
 def detail_questions(request, questionnaire_id):
 
-    """
-    ok
-    """
+
 
     quess = questions.objects.filter(questionnaires=questionnaire_id)
     template = loader.get_template('questi/questions.html')
@@ -121,9 +110,6 @@ def formulair(request):
     return render(request, 'questi/formulaire.html')
 
 def submit(request, questions_id):
-    """
-    a revoir
-    """
 
     reponsse_juste = 0
     cours_nom = questions.objects.get(pk = questions_id)

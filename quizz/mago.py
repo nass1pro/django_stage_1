@@ -6,7 +6,7 @@ from questi.models import *
 
 
 
-name_proff = "nassime"
+name_proff = "prof_1"
 passe = "123456789"
 email_ = "mago-emi12@mail.ru"
 

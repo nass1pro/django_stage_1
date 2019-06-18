@@ -4,10 +4,15 @@ from django.contrib.auth.models import User
 
 
 ### donnée user groupe and utilisateur
-### rajouter class cours
-profff = prof.objects.create_user(name = name_proff,password = passe, email = email_)
+
+
+
+#profff = prof.objects.create_user(name = name_proff,password = passe, email = email_)
 
 pro = prof.objects.get(name = name_proff)
+
+classe = classe.objects.get(name_prof = prof)
+cu = cours.objects.get(name_prof = prof)
 
 ###ici !!!!!
 questionnair = pro.questionnaire_set.create(reference = refe,nom_du_cours = nom_courr, nom_prof = name_proff,explication = expl)
