@@ -7,8 +7,9 @@ from django.template.loader import render_to_string
 from .forms import ConnexionForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
-from django.shortcuts import render
+from django.urls import reverse
 from django.contrib.auth.models import User, Group
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -18,6 +19,7 @@ def index(request):
     form = ConnexionForm()
     template = loader.get_template('questi/index.html')
     context = {'form':form}
+
 
     return render(request, 'questi/index.html', context)
 
@@ -69,13 +71,13 @@ def connexion(request):
             else:
                 error = True
                 return render(request, 'questi/index.html', locals())
-
+@login_required(redirect_field_name='/index/')
 def profil(request):
-
 
     template = loader.get_template('questi/profil.html')
     return render(request, 'questi/profil.html')
 
+@login_required(redirect_field_name='/index/')
 def detail(request, groupe):
 
     ques = classe.objects.filter(pk=groupe)
@@ -83,32 +85,35 @@ def detail(request, groupe):
     print (groupe, ques)
 
     template = loader.get_template('questi/detail.html')
-    cour = {'cour':cour}
+    cour = {'cour':cour, 'groupe':groupe}
     print(cour)
     return render(request, 'questi/detail.html', cour)
 
+@login_required(redirect_field_name='/index/')
+def detail_questionnaire(request, groupe):
 
-def detail_questionnaire(request):
-
-    ques = questions.objects.get(pk=2)
+    ques = questionnaire.objects.filter(cours = groupe)
     template = loader.get_template('questi/questionnaire.html')
+    print(ques)
     context = {'ques':ques}
     return render(request, 'questi/questionnaire.html', context)
 
-def detail_questions(request, questionnaire_id):
+@login_required(redirect_field_name='/index/')
+def detail_questions(request, questi_id):
 
-
-
-    quess = questions.objects.filter(questionnaires=questionnaire_id)
+    print ('questi_id')
+    quess = questions.objects.filter(questionnaires=questi_id)
     template = loader.get_template('questi/questions.html')
     context = {'quess':quess}
     return render(request, 'questi/questions.html', context)
 
-
+@login_required(redirect_field_name='/index/')
 def formulair(request):
     template = loader.get_template('questi/formulaire.html')
     return render(request, 'questi/formulaire.html')
 
+
+@login_required(redirect_field_name='/index/')
 def submit(request, questions_id):
 
     reponsse_juste = 0
@@ -141,11 +146,17 @@ def submit(request, questions_id):
 
         questions_id = int(questions_id)
         questions_id += 1
+    print(request.user.username)
 
+    
     template = loader.get_template('questi/submit.html')
     context = {'reponse_juste': reponsse_juste}
     return render(request, 'questi/submit.html', context)
 
 def deconnexion(request):
+
     logout(request)
-    return render(request,'questi/index.html')
+    form = ConnexionForm()
+    context = {'form':form}
+    template = loader.get_template('questi/index.html')
+    return render(request,'questi/index.html', context)

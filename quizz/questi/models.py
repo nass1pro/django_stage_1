@@ -18,12 +18,16 @@ class classe(models.Model):
 
     name_classe     = models.CharField(max_length=200, unique=False)
     name_prof       = models.ManyToManyField(prof, default= False)
-
+    def __str__(self):
+        return self.name_classe
 
 class cours(models.Model):
+
     name_cour       = models.CharField(max_length=200, unique=False)
     name_classe     = models.OneToOneField(classe, on_delete=models.CASCADE,default= False)
 
+    def __str__(self):
+        return self.name_cour
 
 class questionnaire(models.Model):
 
@@ -75,3 +79,4 @@ class score (models.Model):
     question        = models.CharField(max_length=40000)
     rep_tru         = models.IntegerField(null= False)
     s_elevs         = models.ForeignKey(user_elev, on_delete= models.CASCADE, default= False)
+    s_prof          = models.ForeignKey(prof, on_delete= models.CASCADE, default= False)

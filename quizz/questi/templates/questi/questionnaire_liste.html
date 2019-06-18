@@ -1,8 +1,12 @@
 
-
-
-{% for questionnaire in context %}
-
-<h4>{{ questionnaire.name_cour }}</h4>
+<div class="<col-sm-4 text-center>">
+  {% csrf_token %}
+  <h4>bienvenue {{user.username}}</h4>
+{% for questi in ques %}
+    <a href="{% url 'questions' questi_id=questi.id %}">
+      <h2>{{ questi.nom_du_cours }}</h2>
+    </a>
 
 {% endfor %}
+
+</div>
