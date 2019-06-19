@@ -6,15 +6,19 @@
 
   {% csrf_token %}
 
-      {% if 2 == num %}
-            <h3> fait votre choix </h3>
-                <a href="{% url 'formulaire'%}">
-                    <h5> crée un quizz</h5>
-                </a>
-      {% endif %}
+        {% if 2 == num %}
+                {% for groupe in classe %}
+
+                          <a href="{% url 'detail' groupe=groupe %}">
+                                    <h5>{{ classe }}</h5>
+                          </a>
+
+                {% endfor %}
+      {% else %}
 
     <a href="{% url 'detail' groupe=groupe %}">
         <h3>{{ classe }}</h3>
     </a>
 
+{% endif %}
 </div>

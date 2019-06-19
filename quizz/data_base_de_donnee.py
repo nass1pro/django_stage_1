@@ -3,17 +3,19 @@ from questi.models import *
 from django.contrib.auth.models import User
 
 
+
+clas = classe.objects.get(name_classe = nom_cl)
 pro = prof.objects.get(name = name_proff)
 
-classe = classe.objects.get(name_prof = pro.id)
-cu = cours.objects.get(name_classe = classe.id)
+
+cu = cours.objects.get(name_classe = clas.id, name_prof = pro.id)
 
 
 questionnair = cu.questionnaire_set.create(nom_du_cours = nom_courr, nom_prof = name_proff,explication = expl, reference = refe)
 
 quest_ref = questionnaire.objects.get(nom_prof = name_proff, reference = refe)
 
-print(3)
+
 i = 0
 j = 0
 k = 0

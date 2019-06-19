@@ -3,29 +3,30 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 
+class classe(models.Model):
+
+    name_classe     = models.CharField(max_length=200, unique=False)
+
+
+    def __str__(self):
+        return self.name_classe
+
 class prof(models.Model):
 
     user           = models.OneToOneField(User, on_delete= models.CASCADE, default= False)
     name           = models.CharField(max_length=200, unique=False)
     password       = models.CharField(max_length=200, unique=False)
     email          = models.EmailField(max_length = 70, unique= False)
+    name_classe    = models.ForeignKey(classe, on_delete=models.CASCADE,default= False)
 
     def __str__(self):
         return self.name
 
-
-class classe(models.Model):
-
-    name_classe     = models.CharField(max_length=200, unique=False)
-    name_prof       = models.ManyToManyField(prof, default= False)
-    def __str__(self):
-        return self.name_classe
-
 class cours(models.Model):
 
     name_cour       = models.CharField(max_length=200, unique=False)
-    name_classe     = models.OneToOneField(classe, on_delete=models.CASCADE,default= False)
-
+    name_classe     = models.ForeignKey(classe, on_delete=models.CASCADE,default= False)
+    name_prof       = models.ForeignKey(prof, on_delete=models.CASCADE,default= False)
     def __str__(self):
         return self.name_cour
 
@@ -80,3 +81,6 @@ class score (models.Model):
     rep_tru         = models.IntegerField(null= False)
     s_elevs         = models.ForeignKey(user_elev, on_delete= models.CASCADE, default= False)
     s_prof          = models.ForeignKey(prof, on_delete= models.CASCADE, default= False)
+
+    def __str__(self):
+        return self.question

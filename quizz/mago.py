@@ -4,13 +4,13 @@ import random
 from questi.models import *
 
 
-
+nom_cl = "programmation"
 
 name_proff = "prof_1"
 
 ref = random.randrange(0,100000)
 refe = ref
-nom_courr = "réseaux"
+nom_courr = "rés"
 nom_pr = name_proff
 
 expl = "réseau"
@@ -95,5 +95,3 @@ rep25 = ("Un VPN sécurisé","Une connection ultra haut débit (pour les militai
 
 data = (ques1, ques2,ques3,ques4,ques5,ques6,ques7 ,ques8,ques9,ques10)
 data_q = (rep1,rep2,rep3,rep4,rep5,rep6,rep7,rep8,rep9,rep10)
-
-print(data)
