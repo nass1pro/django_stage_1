@@ -41,9 +41,20 @@ def formulair(request):
 @login_required(redirect_field_name='/index/')
 def sub_questionnaire(request):
 
+    i = 0
+    data_q = []
+    reponse = []
+    reponnse = []
+    data = ["quest1", "quest2","quest3","quest4","quest5","quest6","quest7" ,"quest8","quest9","quest10"]
+    while  i < len(data):
 
-        template = loader.get_template('questi/submit.html')
-        return render(request, 'questi/submit.html')
+        data_q.append(request.POST.get(data[i]))
+        i+=1
+        (rep1,rep2,rep3,rep4,rep5,rep6,rep7,rep8,rep9,rep10)
+    print(data_q)
+
+    template = loader.get_template('questi/submit.html')
+    return render(request, 'questi/submit.html')
 
 def connexion(request):
 
@@ -151,28 +162,24 @@ def submit(request, questions_id):
     pr = questionnaire.objects.get(nom_du_cours = n_cours, reference = d)
     count = pr.questions_set.count()
 
-    print(pr.cours.id)
+
     c = cours.objects.get(name_cour = pr.cours)
     cl = classe.objects.get(name_classe = c.name_classe)
     p = prof.objects.get(name = c.name_prof)
 
     classe_x = classe.objects.get(pk = c.name_classe.id)
-    print(classe_x)
-
-
 
     print(request.user.username)
     eleve = user_elev.objects.get(name = request.user.username)
-
+    print(request.POST.get(questions_id))
     i = 1
     while (i <= count):
 
         questions_id = str(questions_id)
-
         k = request.POST.get(questions_id)
-
+        print(request.POST.get(questions_id))
         questions_id = int(questions_id)
-
+        #print(k)
         sub = questions.objects.filter(pk = questions_id, questionnaires = pr.id)
         sub = questions.objects.get(pk = questions_id, questionnaires = pr.id)
         j = sub.rep_tru_id
@@ -191,7 +198,7 @@ def submit(request, questions_id):
         questions_id -= 1
 
 
-    score.objects.create(reference = sub.reference, score_champ = reponsse_juste, question = pr.nom_du_cours, s_elevs = eleve, s_prof = p, rep_tru = 10, cours = c, classe = classe_x)
+    #score.objects.create(reference = sub.reference, score_champ = reponsse_juste, question = pr.nom_du_cours, s_elevs = eleve, s_prof = p, rep_tru = 10, cours = c, classe = classe_x)
     template = loader.get_template('questi/submit.html')
     context = {'reponse_juste': reponsse_juste}
     return render(request, 'questi/submit.html', context)

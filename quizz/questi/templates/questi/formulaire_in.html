@@ -1,5 +1,5 @@
 
-<form action="{% url 'sub_questionnaire'%}" method="post">
+<form action="{% url 'sub_questionnaire' %}" method="post">
   {% csrf_token %}
 
   <h4>bienvenue {{user.username}} crée votre formulaire ici</h4>
@@ -28,10 +28,10 @@
 
     <p><label for="id_message"></label> <textarea id="id_message" rows="2" cols="100" name="quest1"></textarea></p>
     <br>
-        <input type="radio" name="quest_1" value="rep_1" checked> <input type="text" size="140" name="rep1"><br>
-        <input type="radio" name="quest_1" value="rep_2"> <input type="text" size="140" name="rep2"><br>
-        <input type="radio" name="quest_1" value="rep_3"> <input type="text" size="140" name="rep3"><br>
-        <input type="radio" name="quest_1" value="rep_4"> <input type="text" size="140" name="rep4"><br>
+        <input type="radio" name="quest_1" value="1" checked> <input type="text" size="140" name="rep1_quest_1"><br>
+        <input type="radio" name="quest_1" value="2"> <input type="text" size="140" name="rep2_quest1"><br>
+        <input type="radio" name="quest_1" value="3"> <input type="text" size="140" name="rep3_quest1"><br>
+        <input type="radio" name="quest_1" value="4"> <input type="text" size="140" name="rep4_quest1"><br>
         <br>
   </fieldset>
 
@@ -39,10 +39,10 @@
     <legend> question 2</legend>
     <p><label for="id_message"></label> <textarea id="id_message" rows="2" cols="100" name="quest2"></textarea></p>
     <br>
-        <input type="radio" name="quest_2" value="rep_1" checked> <input type="text" size="140" name="rep1"><br>
-        <input type="radio" name="quest_2" value="rep_2"> <input type="text" size="140" name="rep2"><br>
-        <input type="radio" name="quest_2" value="rep_3"> <input type="text" size="140" name="rep3"><br>
-        <input type="radio" name="quest_2" value="rep_4"> <input type="text" size="140" name="rep4"><br>
+        <input type="radio" name="quest_2" value="1" checked> <input type="text" size="140" name="rep1_quest2"><br>
+        <input type="radio" name="quest_2" value="2"> <input type="text" size="140" name="rep2_quest2"><br>
+        <input type="radio" name="quest_2" value="3"> <input type="text" size="140" name="rep3_quest2"><br>
+        <input type="radio" name="quest_2" value="4"> <input type="text" size="140" name="rep4_quest2"><br>
     <br>
     </fieldset>
 
@@ -50,10 +50,10 @@
     <legend> question 3</legend>
     <p><label for="id_message"></label> <textarea id="id_message" rows="2" cols="100" name="quest3"></textarea></p>
     <br>
-        <input type="radio" name="quest_3" value="rep_1" checked> <input type="text" size="140" name="rep2"><br>
-        <input type="radio" name="quest_3" value="rep2"> <input type="text" size="140" name="rep2"><br>
-        <input type="radio" name="quest_3" value="rep3"> <input type="text" size="140" name="rep3"><br>
-        <input type="radio" name="quest_3" value="rep4"> <input type="text" size="140" name="rep4"><br>
+        <input type="radio" name="quest_3" value="1" checked> <input type="text" size="140" name="rep2_quest3"><br>
+        <input type="radio" name="quest_3" value="2"> <input type="text" size="140" name="rep2_quest3"><br>
+        <input type="radio" name="quest_3" value="3"> <input type="text" size="140" name="rep3_quest3"><br>
+        <input type="radio" name="quest_3" value="4"> <input type="text" size="140" name="rep4_quest3"><br>
         <br>
     </fieldset>
 
@@ -63,10 +63,10 @@
 
     <p><label for="id_message"></label> <textarea id="id_message" rows="2" cols="100" name="quest4"></textarea></p>
     <br>
-        <input type="radio" name="quest_4" value="rep_1" checked> <input type="text" size="150" name="rep1"><br>
-        <input type="radio" name="quest_4" value="rep_2"> <input type="text" size="140" name="rep2"><br>
-        <input type="radio" name="quest_4" value="rep_3"> <input type="text" size="140" name="rep3"><br>
-        <input type="radio" name="quest_4" value="rep_4"> <input type="text" size="140" name="rep4"><br>
+        <input type="radio" name="quest_4" value="1" checked> <input type="text" size="150" name="rep1_quest4"><br>
+        <input type="radio" name="quest_4" value="2"> <input type="text" size="140" name="rep2_quest4"><br>
+        <input type="radio" name="quest_4" value="3"> <input type="text" size="140" name="rep3_quest4"><br>
+        <input type="radio" name="quest_4" value="4"> <input type="text" size="140" name="rep4_quest4"><br>
     <br>
     </fieldset>
 
@@ -75,10 +75,10 @@
 
     <p><label for="id_message"></label> <textarea id="id_message" rows="2" cols="100" name="quest5"></textarea></p>
     <br>
-        <input type="radio" name="quest_5" value="rep_1" checked> <input type="text" size="150" name="rep1"><br>
-        <input type="radio" name="quest_5" value="rep_2"> <input type="text" size="140" name="rep2"><br>
-        <input type="radio" name="quest_5" value="rep_3"> <input type="text" size="140" name="rep3"><br>
-        <input type="radio" name="quest_5" value="rep_4"> <input type="text" size="140" name="rep4"><br>
+        <input type="radio" name="quest_5" value="1" checked> <input type="text" size="150" name="rep1_quest5"><br>
+        <input type="radio" name="quest_5" value="2"> <input type="text" size="140" name="rep2_quest5"><br>
+        <input type="radio" name="quest_5" value="3"> <input type="text" size="140" name="rep3_quest5"><br>
+        <input type="radio" name="quest_5" value="4"> <input type="text" size="140" name="rep4_quest5"><br>
     <br>
     </fieldset>
 
@@ -88,10 +88,10 @@
 
     <p><label for="id_message"></label> <textarea id="id_message" rows="2" cols="100" name="quest6"></textarea></p>
     <br>
-        <input type="radio" name="quest_6" value="rep_1" checked> <input type="text" size="140" name="rep1"><br>
-        <input type="radio" name="quest_6" value="rep_2"> <input type="text" size="140" name="rep2"><br>
-        <input type="radio" name="quest_6" value="rep_3"> <input type="text" size="140" name="rep3"><br>
-        <input type="radio" name="quest_6" value="rep_4"> <input type="text" size="140" name="rep4"><br>
+        <input type="radio" name="quest_6" value="1" checked> <input type="text" size="140" name="rep1_quest6"><br>
+        <input type="radio" name="quest_6" value="2"> <input type="text" size="140" name="rep2_quest6"><br>
+        <input type="radio" name="quest_6" value="3"> <input type="text" size="140" name="rep3_quest6"><br>
+        <input type="radio" name="quest_6" value="4"> <input type="text" size="140" name="rep4_quest6"><br>
     <br>
     </fieldset>
 
@@ -101,10 +101,10 @@
 
     <p><label for="id_message"></label> <textarea id="id_message" rows="2" cols="100" name="quest7"></textarea></p>
     <br>
-        <input type="radio" name="quest_7" value="rep_1" checked> <input type="text" size="140" name="rep1"><br>
-        <input type="radio" name="quest_7" value="rep_2"> <input type="text" size="140" name="rep2"><br>
-        <input type="radio" name="quest_7" value="rep_3"> <input type="text" size="140" name="rep3"><br>
-        <input type="radio" name="quest_7" value="rep_4"> <input type="text" size="140" name="rep4"><br>
+        <input type="radio" name="quest_7" value="1" checked> <input type="text" size="140" name="rep1_quest7"><br>
+        <input type="radio" name="quest_7" value="2"> <input type="text" size="140" name="rep2_quest7"><br>
+        <input type="radio" name="quest_7" value="3"> <input type="text" size="140" name="rep3_quest7"><br>
+        <input type="radio" name="quest_7" value="4"> <input type="text" size="140" name="rep4_quest7"><br>
     <br>
     </fieldset>
 
@@ -113,10 +113,10 @@
 
     <p><label for="id_message"></label> <textarea id="id_message" rows="2" cols="100" name="quest8"></textarea></p>
     <br>
-        <input type="radio" name="quest_8" value="rep_1" checked> <input type="text" size="140" name="rep1"><br>
-        <input type="radio" name="quest_8" value="rep_2"> <input type="text" size="140" name="rep2"><br>
-        <input type="radio" name="quest_8" value="rep_3"> <input type="text" size="140" name="rep3"><br>
-        <input type="radio" name="quest_8" value="rep_4"> <input type="text" size="140" name="rep4"><br>
+        <input type="radio" name="quest_8" value="1" checked> <input type="text" size="140" name="rep1_quest8"><br>
+        <input type="radio" name="quest_8" value="2"> <input type="text" size="140" name="rep2_quest8"><br>
+        <input type="radio" name="quest_8" value="3"> <input type="text" size="140" name="rep3_quest8"><br>
+        <input type="radio" name="quest_8" value="4"> <input type="text" size="140" name="rep4_quest8"><br>
     <br>
     </fieldset>
 
@@ -126,10 +126,10 @@
 
     <p><label for="id_message"></label> <textarea id="id_message" rows="2" cols="100" name="quest9"></textarea></p>
     <br>
-        <input type="radio" name="quest_9" value="rep_1" checked> <input type="text" size="140" name="rep1"><br>
-        <input type="radio" name="quest_9" value="rep_2"> <input type="text" size="140" name="rep2"><br>
-        <input type="radio" name="quest_9" value="rep_3"> <input type="text" size="140" name="rep3"><br>
-        <input type="radio" name="quest_9" value="rep_4"> <input type="text" size="140" name="rep4"><br>
+        <input type="radio" name="quest_9" value="1" checked> <input type="text" size="140" name="rep1_quest9"><br>
+        <input type="radio" name="quest_9" value="2"> <input type="text" size="140" name="rep2_quest9"><br>
+        <input type="radio" name="quest_9" value="3"> <input type="text" size="140" name="rep3_quest9"><br>
+        <input type="radio" name="quest_9" value="4"> <input type="text" size="140" name="rep4_quest9"><br>
     <br>
     </fieldset>
 
@@ -139,10 +139,10 @@
 
     <p><label for="id_message"></label> <textarea id="id_message" rows="2" cols="100" name="quest10"></textarea></p>
     <br>
-        <input type="radio" name="quest_10" value="rep_1" checked> <input type="text" size="140" name="rep1"><br>
-        <input type="radio" name="quest_10" value="rep_2"> <input type="text" size="140" name="rep2"><br>
-        <input type="radio" name="quest_10" value="rep_3"> <input type="text" size="140" name="rep3"><br>
-        <input type="radio" name="quest_10" value="rep_4"> <input type="text" size="140" name="rep4"><br>
+        <input type="radio" name="quest_10" value="1" checked> <input type="text" size="140" name="rep1_quest10"><br>
+        <input type="radio" name="quest_10" value="2"> <input type="text" size="140" name="rep2_quest10"><br>
+        <input type="radio" name="quest_10" value="3"> <input type="text" size="140" name="rep3_quest10"><br>
+        <input type="radio" name="quest_10" value="4"> <input type="text" size="140" name="rep4_quest10"><br>
 
     </fieldset>
 
