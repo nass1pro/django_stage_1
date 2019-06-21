@@ -26,20 +26,25 @@ def index(request):
 
 @login_required(redirect_field_name='/index/')
 def formulair(request):
-    classe = prof.objects.filter(name = request.user.username)
-    print(classe)
-    cl = {'classe':classe}
+    c = 0
+    classe = prof_class.objects.filter(proff__name = request.user.username)
+
+    for c in classe:
+        pass
+
+    cour = cours.objects.filter(name_prof = c.proff.id)
+    cl = {'classe':classe,'cour':cour}
+    print(cour)
     template = loader.get_template('questi/formulaire.html')
     return render(request, 'questi/formulaire.html', cl)
 
 @login_required(redirect_field_name='/index/')
 def sub_questionnaire(request):
-    if request.method == "POST":
-        form = FormulaireForm(request.POST)
-        username = request.POST["username"]
+
 
         template = loader.get_template('questi/submit.html')
         return render(request, 'questi/submit.html')
+
 def connexion(request):
 
      error = False
@@ -107,9 +112,9 @@ def detail(request, groupe, nume, users_id):
     if nume == 2:
         print(groupe)
         i = 0
-        pro       = score.objects.filter(s_prof = users_id)
+        pro       = score.objects.filter(s_prof = users_id, classe = groupe)
         name_ques = questionnaire.objects.filter(nom_prof = request.user.username)
-        print(name_ques)
+        print(pro)
         for i in name_ques:
             name = i
         template  = loader.get_template('questi/detail.html')
@@ -145,11 +150,15 @@ def submit(request, questions_id):
     d = sub.reference
     pr = questionnaire.objects.get(nom_du_cours = n_cours, reference = d)
     count = pr.questions_set.count()
-    print(pr.cours)
 
+    print(pr.cours.id)
     c = cours.objects.get(name_cour = pr.cours)
     cl = classe.objects.get(name_classe = c.name_classe)
     p = prof.objects.get(name = c.name_prof)
+
+    classe_x = classe.objects.get(pk = c.name_classe.id)
+    print(classe_x)
+
 
 
     print(request.user.username)
@@ -157,7 +166,7 @@ def submit(request, questions_id):
 
     i = 1
     while (i <= count):
-        print(i)
+
         questions_id = str(questions_id)
 
         k = request.POST.get(questions_id)
@@ -181,8 +190,8 @@ def submit(request, questions_id):
         questions_id = int(questions_id)
         questions_id -= 1
 
-        print(questions_id)
-    score.objects.create(reference = sub.reference, score_champ = reponsse_juste, question = pr.nom_du_cours, s_elevs = eleve, s_prof = p, rep_tru = 10)
+
+    score.objects.create(reference = sub.reference, score_champ = reponsse_juste, question = pr.nom_du_cours, s_elevs = eleve, s_prof = p, rep_tru = 10, cours = c, classe = classe_x)
     template = loader.get_template('questi/submit.html')
     context = {'reponse_juste': reponsse_juste}
     return render(request, 'questi/submit.html', context)

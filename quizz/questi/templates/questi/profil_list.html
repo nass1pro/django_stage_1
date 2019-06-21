@@ -7,7 +7,7 @@
         {% for groupe in group %}
 
             <a href="{% url 'detail' groupe=groupe.classe.id nume=num users_id=user %}">
-                      <h5>{{ groupe.classe.id}}</h5>
+                      <h5>{{ groupe.classe}}</h5>
             </a>
             {% endfor %}
             <a href="{% url 'formulaire' %}">

@@ -1,7 +1,8 @@
 
 <div class="<col-sm-4 text-center>">
   {% csrf_token %}
-  <h4>bienvenue {{user.username}}</h4>
+  <h4>liste des questionnaire du cours</h4>
+
 {% for questi in ques %}
     <a href="{% url 'questions' questi_id=questi.id %}">
       <h2>{{ questi.nom_du_cours }}</h2>
