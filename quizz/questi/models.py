@@ -85,6 +85,7 @@ class score (models.Model):
     rep_tru         = models.IntegerField(null= False)
     s_elevs         = models.ForeignKey(user_elev, on_delete= models.CASCADE, default= False)
     s_prof          = models.ForeignKey(prof, on_delete= models.CASCADE, default= False)
+    cours           = models.ForeignKey(cours, on_delete= models.CASCADE, default= 0)
 
     def __str__(self):
         return self.question

@@ -67,30 +67,6 @@ def connexion(request):
 
                     us_prof       = prof.objects.get(name = pro)
                     cl            = prof_class.objects.filter(proff = us_prof.id)
-                    id = []
-                    name_cl =[]
-                    l = []
-                    i=0
-                    j=0
-                    nam_cl = {}
-                    cont = {'cl':cl}
-                    for pro in cl:
-
-                        l.append(pro.classe)
-                        groupe = classe.objects.all()
-
-
-                        id.append(groupe)
-                        name_cl.append(groupe)
-                        i+=1
-
-
-                    while j < len(id):
-
-                        grou[j] = id[j]
-                        nam_cl[j] = name_cl[j]
-
-                        j+=1
 
                     context = {'cl': cl , 'num': 2, 'class': cl, 'group':cl, 'user': us_prof.id, 'utils': username}
                     return render(request, 'questi/profil.html', context)
@@ -129,7 +105,7 @@ def detail(request, groupe, nume, users_id):
         return render(request, 'questi/detail.html', cour)
 
     if nume == 2:
-
+        print(groupe)
         i = 0
         pro       = score.objects.filter(s_prof = users_id)
         name_ques = questionnaire.objects.filter(nom_prof = request.user.username)
