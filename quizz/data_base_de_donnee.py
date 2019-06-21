@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 
 
+
 clas = classe.objects.get(name_classe = nom_cl)
 pro = prof.objects.get(name = name_proff)
 

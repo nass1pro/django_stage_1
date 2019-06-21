@@ -7,7 +7,6 @@ class classe(models.Model):
 
     name_classe     = models.CharField(max_length=200, unique=False)
 
-
     def __str__(self):
         return self.name_classe
 
@@ -21,6 +20,11 @@ class prof(models.Model):
 
     def __str__(self):
         return self.name
+class prof_class(models.Model):
+
+    proff         = models.ForeignKey(prof,on_delete=models.CASCADE,default= False)
+    classe        = models.ForeignKey(classe,on_delete=models.CASCADE,default= False)
+
 
 class cours(models.Model):
 
@@ -48,13 +52,13 @@ class questions(models.Model):
     reference      = models.IntegerField(null=True)
     nom_du_cours   = models.CharField(max_length=200)
     created_at     = models.DateTimeField(auto_now_add=True)
-    quest          = models.CharField(max_length=40000)
+    quest          = models.CharField('la question',max_length=40000)
     rep_tru        = models.CharField(max_length=40000)
-    rep_1          = models.CharField(max_length=40000)
-    rep_2          = models.CharField(max_length=40000)
-    rep_3          = models.CharField(max_length=40000)
-    rep_4          = models.CharField(max_length=40000)
-    rep_tru_id     = models.IntegerField(null=True)
+    rep_1          = models.CharField('reponse 1',max_length=40000)
+    rep_2          = models.CharField('reponse 2',max_length=40000)
+    rep_3          = models.CharField('reponse 3',max_length=40000)
+    rep_4          = models.CharField('reponse 4',max_length=40000)
+    rep_tru_id     = models.IntegerField('indiquer le numero de la reponse juste',null=True)
     questionnaires = models.ForeignKey(questionnaire, on_delete=models.CASCADE, default= False)
 
     def __str__(self):

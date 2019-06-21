@@ -14,6 +14,8 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+
+
 def index(request):
 
     form = ConnexionForm()
@@ -46,15 +48,13 @@ def connexion(request):
                     for pro in users_prof:
                         pass
 
-
                     us_prof       = prof.objects.get(name = pro)
-                    classes_prof  = classe.objects.get(name_classe = us_prof.name_classe)
+                    classes_prof  = prof_class.objects.get(proff = us_prof.id)
+                    clas          = classe.objects.get(name_classe = classes_prof.classe )
+                    cl            = prof_class.objects.filter(proff = us_prof.id, classe = clas.id)
 
-
-
-                    context = {'groupe': classes_prof.id, 'num': 2, 'classe': classes_prof.name_classe}
+                    context = {'cl': cl , 'num': 2, 'class': clas.id, 'user': us_prof.id}
                     print(context)
-
                     return render(request, 'questi/profil.html', context)
 
                 elif (len (users_eleve) != 0):
@@ -66,7 +66,7 @@ def connexion(request):
                     classe_eleves = us_eleve.name_classe
 
 
-                    cont = {'groupe': classe_eleves.id, 'classe': classe_eleves.name_classe}
+                    cont = {'groupe': classe_eleves.id, 'num': 1,'classe': classe_eleves.name_classe, 'user':us_eleve.id}
 
                     print(cont)
                     return render(request, 'questi/profil.html', cont)
@@ -82,15 +82,23 @@ def profil(request):
     return render(request, 'questi/profil.html')
 
 @login_required(redirect_field_name='/index/')
-def detail(request, groupe):
-    print('ok')
-    ques = classe.objects.filter(pk=groupe)
-    cour = cours.objects.filter(name_classe =  groupe)
-    template = loader.get_template('questi/detail.html')
-    cour = {'cour':cour, 'groupe':groupe}
-    print(cour)
-    print('salut ceee')
-    return render(request, 'questi/detail.html', cour)
+def detail(request, groupe, nume, users_id):
+
+    if nume == 1:
+
+        ques = classe.objects.filter(pk=groupe)
+        cour = cours.objects.filter(name_classe =  groupe)
+        template = loader.get_template('questi/detail.html')
+        cour = {'cour':cour, 'groupe':groupe, 'num':nume}
+        return render(request, 'questi/detail.html', cour)
+
+    if nume == 2:
+        print('4')
+
+        pro = score.objects.filter(s_prof = users_id)
+        template = loader.get_template('questi/detail.html')
+        sc = {'score':pro, 'num':nume}
+        return render(request, 'questi/detail.html', sc)
 
 @login_required(redirect_field_name='/index/')
 def detail_questionnaire(request, groupe):
@@ -106,10 +114,7 @@ def detail_questionnaire(request, groupe):
 @login_required(redirect_field_name='/index/')
 def detail_questions(request, questi_id):
 
-    print (questi_id)
-    print('pl')
     quess = questions.objects.filter(questionnaires=questi_id)
-    print (quess)
     template = loader.get_template('questi/questions.html')
     context = {'quess':quess}
     return render(request, 'questi/questions.html', context)
@@ -133,11 +138,11 @@ def submit(request, questions_id):
     d = sub.reference
     pr = questionnaire.objects.get(nom_du_cours = n_cours, reference = d)
     count = pr.questions_set.count()
-    print(pr.id)
+    print(pr.cours)
 
     c = cours.objects.get(name_cour = pr.cours)
-    cl = classe.objects.get(pk = c.id)
-    p = prof.objects.get(pk = cl.id)
+    cl = classe.objects.get(name_classe = c.name_classe)
+    p = prof.objects.get(name = c.name_prof)
 
 
     print(request.user.username)
@@ -145,11 +150,15 @@ def submit(request, questions_id):
 
     i = 1
     while (i <= count):
-
+        print(i)
         questions_id = str(questions_id)
 
         k = request.POST.get(questions_id)
-        sub = questions.objects.get(pk = questions_id)
+
+        questions_id = int(questions_id)
+
+        sub = questions.objects.filter(pk = questions_id, questionnaires = pr.id)
+        sub = questions.objects.get(pk = questions_id, questionnaires = pr.id)
         j = sub.rep_tru_id
 
         if (k == 'None'):
@@ -163,9 +172,9 @@ def submit(request, questions_id):
         i += 1
 
         questions_id = int(questions_id)
-        questions_id += 1
+        questions_id -= 1
 
-
+        print(questions_id)
     score.objects.create(reference = sub.reference, score_champ = reponsse_juste, question = pr.nom_du_cours, s_elevs = eleve, s_prof = p, rep_tru = 10)
     template = loader.get_template('questi/submit.html')
     context = {'reponse_juste': reponsse_juste}

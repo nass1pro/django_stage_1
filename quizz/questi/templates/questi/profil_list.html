@@ -7,16 +7,16 @@
   {% csrf_token %}
 
         {% if 2 == num %}
-                {% for groupe in classe %}
+                {% for groupe in cl %}
 
-                          <a href="{% url 'detail' groupe=groupe %}">
-                                    <h5>{{ classe }}</h5>
+                          <a href="{% url 'detail' groupe=class nume=num users_id=user %}">
+                                    <h5>{{ groupe.classe }}</h5>
                           </a>
 
                 {% endfor %}
       {% else %}
 
-    <a href="{% url 'detail' groupe=groupe %}">
+    <a href="{% url 'detail' groupe=groupe nume=num users_id=user %}">
         <h3>{{ classe }}</h3>
     </a>
 

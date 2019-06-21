@@ -3,11 +3,19 @@
     {% csrf_token %}
   <h4>bienvenue {{user.username}}</h4>
 
+{% if 1 == num %}
 
 {% for nom in cour %}
   <a href="{% url 'questionnaire' groupe=groupe %}">
     <h2>{{ nom.name_cour }}</h2>
 
 {% endfor %}
+{% else %}
 
+{% for sc in score %}
+
+<h2>{{ sc.score_champ }}</h2>
+
+{% endfor %}
+{% endif %}
 </div>
