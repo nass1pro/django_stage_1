@@ -12,6 +12,7 @@ from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
 
 
+
 # Create your views here.
 
 
@@ -41,17 +42,40 @@ def formulair(request):
 @login_required(redirect_field_name='/index/')
 def sub_questionnaire(request):
 
-    i = 0
     data_q = []
-    reponse = []
-    reponnse = []
-    data = ["quest1", "quest2","quest3","quest4","quest5","quest6","quest7" ,"quest8","quest9","quest10"]
-    while  i < len(data):
+    data = []
+    j = 4
+    info = 0
+    
+    cu = cours.objects.get(name_classe = clas.id, name_prof = pro.id)
+    clas = classe.objects.get(name_classe = nom_cl)
+    pro = prof.objects.get(name = name_proff)
+    questionnair = cu.questionnaire_set.create(nom_du_cours = nom_courr, nom_prof = name_proff,explication = expl, reference = refe)
+    quest_ref = questionnaire.objects.get(nom_prof = name_proff, reference = refe)
 
-        data_q.append(request.POST.get(data[i]))
-        i+=1
-        (rep1,rep2,rep3,rep4,rep5,rep6,rep7,rep8,rep9,rep10)
-    print(data_q)
+    k=request.POST
+
+    for i in k:
+        data.append(i)
+
+    while j < 60:
+    #print(request.POST.get(data[j]))
+
+        print(request.POST.get(data[j]))
+        j +=1
+        print(request.POST.get(data[j]))
+        j +=1
+        print(request.POST.get(data[j]))
+        j +=1
+        print(request.POST.get(data[j]))
+        j +=1
+        print(request.POST.get(data[j]))
+        j +=1
+        if j < 59:
+            print(request.POST.get(data[j]))
+            j +=1
+            quest_ref.questions_set.create(reference = refe,nom_du_cours = nom_courr,quest = data[i][0],rep_1 = data_q[j][0],rep_2 = data_q[j][1],rep_3 = data_q[j][2],rep_4 = data_q[j][3],rep_tru_id = vrai)
+
 
     template = loader.get_template('questi/submit.html')
     return render(request, 'questi/submit.html')
