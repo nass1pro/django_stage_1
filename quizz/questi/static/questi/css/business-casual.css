@@ -24,6 +24,13 @@ h6 {
     font-weight: 700;
     letter-spacing: 1px;
 }
+table {
+    border-collapse: collapse;
+}
+td, th {
+
+    border: 1px solid black;
+}
 
 p {
     font-size: 1.25em;

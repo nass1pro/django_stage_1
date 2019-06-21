@@ -1,8 +1,16 @@
 
-<form class="" action="" method="post">
+<form action="{% url 'sub_questionnaire'%}" method="post">
   {% csrf_token %}
-  <h4>bienvenue {{username}}</h4>
+
+  <h4>bienvenue {{user.username}} crée votre formulaire ici</h4>
+  <h5>nom de la classe</h5>
+      <SELECT name="classe" size="1">
+      {% for u in classe %}
+      <OPTION>{{u.name_classe}}
+        {% endfor %}
+      </SELECT>
   <fieldset>
+
     <legend>question 1</legend>
 
     <p><label for="id_message"></label> <textarea id="id_message" rows="2" cols="100" name="quest1"></textarea></p>
@@ -73,6 +81,7 @@
         <input type="radio" name="quest_6" value="rep_4"> <input type="text" size="150" name="rep4"><br>
     <br>
     </fieldset>
+
 
     <fieldset>
     <legend> question 7</legend>

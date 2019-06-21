@@ -21,10 +21,25 @@ def index(request):
     form = ConnexionForm()
     template = loader.get_template('questi/index.html')
     context = {'form':form}
-
-
     return render(request, 'questi/index.html', context)
 
+
+@login_required(redirect_field_name='/index/')
+def formulair(request):
+    classe = prof.objects.filter(name = request.user.username)
+    print(classe)
+    cl = {'classe':classe}
+    template = loader.get_template('questi/formulaire.html')
+    return render(request, 'questi/formulaire.html', cl)
+
+@login_required(redirect_field_name='/index/')
+def sub_questionnaire(request):
+    if request.method == "POST":
+        form = FormulaireForm(request.POST)
+        username = request.POST["username"]
+
+        template = loader.get_template('questi/submit.html')
+        return render(request, 'questi/submit.html')
 def connexion(request):
 
      error = False
@@ -45,16 +60,39 @@ def connexion(request):
 
                 if ( len(users_prof) != 0):
                     pro = 0
+                    groupe = []
+                    grou = {}
                     for pro in users_prof:
                         pass
 
                     us_prof       = prof.objects.get(name = pro)
-                    classes_prof  = prof_class.objects.get(proff = us_prof.id)
-                    clas          = classe.objects.get(name_classe = classes_prof.classe )
-                    cl            = prof_class.objects.filter(proff = us_prof.id, classe = clas.id)
+                    cl            = prof_class.objects.filter(proff = us_prof.id)
+                    id = []
+                    name_cl =[]
+                    l = []
+                    i=0
+                    j=0
+                    nam_cl = {}
+                    cont = {'cl':cl}
+                    for pro in cl:
 
-                    context = {'cl': cl , 'num': 2, 'class': clas.id, 'user': us_prof.id}
-                    print(context)
+                        l.append(pro.classe)
+                        groupe = classe.objects.all()
+
+
+                        id.append(groupe)
+                        name_cl.append(groupe)
+                        i+=1
+
+
+                    while j < len(id):
+
+                        grou[j] = id[j]
+                        nam_cl[j] = name_cl[j]
+
+                        j+=1
+
+                    context = {'cl': cl , 'num': 2, 'class': cl, 'group':cl, 'user': us_prof.id, 'utils': username}
                     return render(request, 'questi/profil.html', context)
 
                 elif (len (users_eleve) != 0):
@@ -67,8 +105,6 @@ def connexion(request):
 
 
                     cont = {'groupe': classe_eleves.id, 'num': 1,'classe': classe_eleves.name_classe, 'user':us_eleve.id}
-
-                    print(cont)
                     return render(request, 'questi/profil.html', cont)
 
             else:
@@ -93,21 +129,24 @@ def detail(request, groupe, nume, users_id):
         return render(request, 'questi/detail.html', cour)
 
     if nume == 2:
-        print('4')
 
-        pro = score.objects.filter(s_prof = users_id)
-        template = loader.get_template('questi/detail.html')
-        sc = {'score':pro, 'num':nume}
+        i = 0
+        pro       = score.objects.filter(s_prof = users_id)
+        name_ques = questionnaire.objects.filter(nom_prof = request.user.username)
+        print(name_ques)
+        for i in name_ques:
+            name = i
+        template  = loader.get_template('questi/detail.html')
+        sc = {'score':pro, 'num':nume, 'quest': name}
         return render(request, 'questi/detail.html', sc)
 
 @login_required(redirect_field_name='/index/')
-def detail_questionnaire(request, groupe):
-    print(groupe)
-    print('salut')
-    q = cours.objects.get(name_classe = groupe)
+def detail_questionnaire(request, cours_id):
+
+    q = cours.objects.get(pk = cours_id)
     ques = questionnaire.objects.filter(cours = q.id)
     template = loader.get_template('questi/questionnaire.html')
-    print(ques)
+
     context = {'ques':ques}
     return render(request, 'questi/questionnaire.html', context)
 
@@ -120,16 +159,8 @@ def detail_questions(request, questi_id):
     return render(request, 'questi/questions.html', context)
 
 @login_required(redirect_field_name='/index/')
-def formulair(request):
-    template = loader.get_template('questi/formulaire.html')
-    return render(request, 'questi/formulaire.html')
-
-
-@login_required(redirect_field_name='/index/')
 def submit(request, questions_id):
-    """
-    changer prof id avec classe id
-    """
+
 
     reponsse_juste = 0
     sub = questions.objects.get(pk = questions_id)
@@ -179,6 +210,7 @@ def submit(request, questions_id):
     template = loader.get_template('questi/submit.html')
     context = {'reponse_juste': reponsse_juste}
     return render(request, 'questi/submit.html', context)
+
 
 def deconnexion(request):
 

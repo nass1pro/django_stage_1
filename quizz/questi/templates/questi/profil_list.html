@@ -1,21 +1,26 @@
 
-
-<h4>bienvenue {{user.username}}</h4>
-
 <div class="<col-sm-4 text-center>">
 
   {% csrf_token %}
+      {% if 2 == num %}
+        <h4>bienvenue voici vos classes</h4>
+        {% for groupe in cl %}
 
-        {% if 2 == num %}
-                {% for groupe in cl %}
+            <a href="{% url 'detail' groupe=groupe.id nume=num users_id=user %}">
+                      <h5>{{ groupe.prof_class }}</h5>
+            </a>
 
-                          <a href="{% url 'detail' groupe=class nume=num users_id=user %}">
-                                    <h5>{{ groupe.classe }}</h5>
-                          </a>
+            {% endfor %}
 
-                {% endfor %}
+
+            <a href="{% url 'formulaire' %}">
+                      <h5> crée un questionnaire </h5>
+            </a>
+
+
+
       {% else %}
-
+      <h4>bienvenue voici votre classes</h4>
     <a href="{% url 'detail' groupe=groupe nume=num users_id=user %}">
         <h3>{{ classe }}</h3>
     </a>

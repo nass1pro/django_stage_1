@@ -1,21 +1,39 @@
 
 <div class="<col-sm-4 text-center>">
     {% csrf_token %}
-  <h4>bienvenue {{user.username}}</h4>
+
 
 {% if 1 == num %}
-
-{% for nom in cour %}
-  <a href="{% url 'questionnaire' groupe=groupe %}">
-    <h2>{{ nom.name_cour }}</h2>
-
+<h4>liste des cours </h4>
+  <h4>bienvenue {{user.username}}</h4>
+      {% for nom in cour %}
+        <a href="{% url 'questionnaire' cours_id=nom.id %}">
+          <h2>{{ nom.name_cour }}</h2>
+          <h2>{{ nom.id}}</h2>
+          </a>
 {% endfor %}
 {% else %}
 
-{% for sc in score %}
+<h4>note des élève pour votre questionnaire {{quest}}</h4>
 
-<h2>{{ sc.score_champ }}</h2>
+<table>
+   <caption>note des eleves</caption>
+
+   <tr>
+       <th>Nom</th>
+       <th>note</th>
+       <th>sur</th>
+{% for sc in score %}
+   </tr>
+   <tr>
+       <td>{{ sc.s_elevs }}</td>
+       <td>{{ sc.score_champ }}</td>
+       <td>10</td>
+   </tr>
+
+
 
 {% endfor %}
+</table>
 {% endif %}
 </div>
