@@ -10,6 +10,7 @@ from django.contrib.auth import logout
 from django.urls import reverse
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
+import random
 
 
 
@@ -45,36 +46,39 @@ def sub_questionnaire(request):
     data_q = []
     data = []
     j = 4
-    info = 0
-    
-    cu = cours.objects.get(name_classe = clas.id, name_prof = pro.id)
-    clas = classe.objects.get(name_classe = nom_cl)
-    pro = prof.objects.get(name = name_proff)
-    questionnair = cu.questionnaire_set.create(nom_du_cours = nom_courr, nom_prof = name_proff,explication = expl, reference = refe)
-    quest_ref = questionnaire.objects.get(nom_prof = name_proff, reference = refe)
+    info = 1
+    ref = random.randrange(0,100000)
 
     k=request.POST
 
     for i in k:
         data.append(i)
 
-    while j < 60:
-    #print(request.POST.get(data[j]))
+    name_clas = request.POST.get(data[1])
+    name_cu   = request.POST.get(data[2])
+    nom_courr = request.POST.get(data[3])
 
-        print(request.POST.get(data[j]))
-        j +=1
-        print(request.POST.get(data[j]))
-        j +=1
-        print(request.POST.get(data[j]))
-        j +=1
-        print(request.POST.get(data[j]))
-        j +=1
-        print(request.POST.get(data[j]))
-        j +=1
-        if j < 59:
+    clas = classe.objects.get(name_classe = name_clas)
+    cu = cours.objects.get(name_classe = clas.id, name_prof__name = request.user.username,name_cour = name_cu )
+    questionnair = cu.questionnaire_set.create(nom_du_cours = nom_courr, nom_prof = request.user.username , reference = ref)
+    quest_ref = questionnaire.objects.get(nom_prof = request.user.username, reference = ref)
+
+
+    while info <= 10 and j <= 58:
+
+        if info <= 10 :
             print(request.POST.get(data[j]))
-            j +=1
-            quest_ref.questions_set.create(reference = refe,nom_du_cours = nom_courr,quest = data[i][0],rep_1 = data_q[j][0],rep_2 = data_q[j][1],rep_3 = data_q[j][2],rep_4 = data_q[j][3],rep_tru_id = vrai)
+            print(request.POST.get(data[j+1]))
+            print(request.POST.get(data[j+2]))
+            print(request.POST.get(data[j+3]))
+            print(request.POST.get(data[j+4]))
+            print(request.POST.get(data[j+5]))
+            quest_ref.questions_set.create(reference = ref,nom_du_cours = nom_courr,quest = request.POST.get(data[j]),rep_1 =request.POST.get(data[j+2]) ,rep_2 = request.POST.get(data[j+3]),rep_3 = request.POST.get(data[j+4]),rep_4 = request.POST.get(data[j+5]),rep_tru_id = request.POST.get(data[j+1]))
+
+        j +=6
+        info += 1
+
+
 
 
     template = loader.get_template('questi/submit.html')
@@ -195,13 +199,13 @@ def submit(request, questions_id):
 
     print(request.user.username)
     eleve = user_elev.objects.get(name = request.user.username)
-    print(request.POST.get(questions_id))
+
     i = 1
     while (i <= count):
 
         questions_id = str(questions_id)
         k = request.POST.get(questions_id)
-        print(request.POST.get(questions_id))
+
         questions_id = int(questions_id)
         #print(k)
         sub = questions.objects.filter(pk = questions_id, questionnaires = pr.id)
