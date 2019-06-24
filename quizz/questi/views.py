@@ -112,6 +112,8 @@ def connexion(request):
 
                     cont = {'groupe': classe_eleves.id, 'num': 1,'classe': classe_eleves.name_classe, 'user':us_eleve.id}
                     return render(request, 'questi/profil.html', cont)
+                elif (len (users_eleve) == 0) and (len (users_prof) == 0):
+                    return render(request, 'questi/index.html', locals())
 
             else:
                 error = True
@@ -188,12 +190,8 @@ def submit(request, questions_id):
 
         questions_id = str(questions_id)
         k = request.POST.get(questions_id)
-
         questions_id = int(questions_id)
-        #print(k)
-        sub = questions.objects.filter(pk = questions_id, questionnaires = pr.id)
-        sub = questions.objects.get(pk = questions_id, questionnaires = pr.id)
-        j = sub.rep_tru_id
+        j = sub.rep_tru
 
         if (k == 'None'):
             k = 0

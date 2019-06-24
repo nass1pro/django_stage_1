@@ -20,6 +20,7 @@ class prof(models.Model):
 
     def __str__(self):
         return self.name
+        
 class prof_class(models.Model):
 
     proff         = models.ForeignKey(prof,on_delete=models.CASCADE,default= False)
