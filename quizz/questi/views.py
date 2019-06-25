@@ -191,20 +191,24 @@ def submit(request, questions_id):
         questions_id = str(questions_id)
         k = request.POST.get(questions_id)
         questions_id = int(questions_id)
-        j = sub.rep_tru
+
+        j = questions.objects.get( pk  = questions_id)
+        print(j.id, j.quest)
+
 
         if (k == 'None'):
             k = 0
 
         if (k == None):
             k = 0
-        if (int(k) == j):
+        if (int(k) == j.rep_tru_id):
             reponsse_juste += 1
 
         i += 1
 
         questions_id = int(questions_id)
-        questions_id -= 1
+        questions_id += 1
+
 
 
     score.objects.create(reference = sub.reference, score_champ = reponsse_juste, question = pr.nom_du_cours, s_elevs = eleve, s_prof = p, rep_tru = 10, cours = c, classe = classe_x)
